@@ -1,0 +1,32 @@
+import math
+import matplotlib.pylab as plt
+
+global m
+
+class Sierra:
+
+        wavearray = []
+        def __init__(self, frecuencia, sampling, amplitud, time):
+            self.SamplingRate = sampling
+            self.Amplitud = amplitud
+            self.Seconds = time
+            self.Frecuencia = frecuencia
+            self.tamano = sampling * time
+
+        def generarDS(self):
+
+            for i in range (0, self.tamano):
+                    A = self.Amplitud / 100
+                    datos = 0
+                    for j in range (0, 100):
+                            value = math.sin((j*math.pi*self.Frecuencia*i)/self.SamplingRate)
+                            datos = datos + value
+                    frame = datos * A
+                    Sierra.wavearray.append(frame)
+
+            return Sierra.wavearray
+
+
+        def graficarDS(self, array):
+                plt.plot(array, color="green", linewidth=1.0, linestyle="-")
+                plt.show()
