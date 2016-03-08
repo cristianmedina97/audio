@@ -1,0 +1,50 @@
+  onda = Square(Tono, Frecuenciadesampleo, Amplitud, Tiempo)
+        datos = onda.generarC()
+
+        m = (-1)*max(onda.wavearray)
+        print(m)
+
+        n = math.log( m /(10**( dBFS /20))) / math.log(2)
+        print(n)
+
+
+        archivo = Archivo(Frecuenciadesampleo, n, Nombre)
+        archivo.archivar(datos)
+
+        onda.graficarC(datos)
+
+    elif opcion==3:
+
+        print ("Ingrese los parametros: ")
+        Tono = input("Ingrese la frecuencia del tono a generar: ")
+        Tiempo = input("Ingrese el tiempo de audio en segundos: ")
+        Frecuenciadesampleo = input("Ingrese la frecuencia de muestreo: ")
+        Amplitud = input("Ingrese el nivel pico de la senal deseada: ")
+        dBFS = input("Ingrese el nivel pico dBFS de la senal deseada: ")
+        Nombre = raw_input("Ingrese el nombre del archivo a generar: ")
+        Nombre = (Nombre + ".wav")
+
+        onda = Triangulo(Tono, Frecuenciadesampleo, Amplitud, Tiempo)
+        datos = onda.generarT()
+
+
+        m = (-1)*max(onda.wavearray)
+        print(m)
+
+        n = math.log( m /(10**( dBFS /20))) / math.log(2)
+        print(n)
+
+        archivo = Archivo(Frecuenciadesampleo, n, Nombre)
+        archivo.archivar(datos)
+
+        onda.graficarT(datos)
+
+    else:
+        print("Opcion no valida")
+
+
+
+
+
+if __name__ == "__main__":
+    main()
